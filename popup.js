@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Close, Wrapper, Header } from "./styled";
 
-export default function PopUp({ isShow, onClose, title, children }) {
+export default function PopUp({ onClose, title, children }) {
     const handlerEsc = (evt) => {
         if (evt.keyCode === 27) {
             onClose && onClose();
@@ -9,12 +9,14 @@ export default function PopUp({ isShow, onClose, title, children }) {
     };
 
     useEffect(() => {
+        console.log('Обработчик добавлен');
         document.addEventListener("keydown", handlerEsc);
         return () => {
+            console.log('Обработчик удален');
             document.removeEventListener("keydown", handlerEsc);
         };
     }, []);
-    return isShow ? (
+    return (
         <Wrapper>
             <Header>
                 {title}{" "}
@@ -24,5 +26,5 @@ export default function PopUp({ isShow, onClose, title, children }) {
             </Header>
             {children}
         </Wrapper>
-    ) : null;
+    );
 }

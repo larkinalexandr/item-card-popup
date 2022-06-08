@@ -75,13 +75,15 @@ function ProductPage({ product }) {
                 </ProductInfo>
             </ProductWrapper>
             <Tabs tabs={tabs} />
-            <PopUp
-                isShow={isShowPopup}
-                onClose={() => setIsShowPopup(false)}
-                title="Оформление"
-            >
-                <Order />
-            </PopUp>
+            {isShowPopup &&
+                <PopUp
+                    isShow={isShowPopup}
+                    onClose={() => setIsShowPopup(false)}
+                    title="Оформление"
+                >
+                    <Order/>
+                </PopUp>
+            }
         </StyledProductPage>
     );
 }
